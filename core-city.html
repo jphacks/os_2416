@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>決算カード倶楽部</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-red-600 text-white py-6 shadow-lg">
+        <h1 class="text-center text-3xl font-bold">決算カード倶楽部</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto my-8 p-8 bg-white shadow-lg rounded-lg">
+        <h1 class="text-2xl font-semibold mb-6 text-gray-800">第3章 練習問題</h1>
+        <p class="text-gray-700 mb-6">では次に名古屋市の決算カードを見て問題を解いていきましょう!!</p>
+
+        <img src="images/nagoya.jpg" alt="名古屋市決算カード" class="w-full h-auto rounded-md mb-8 shadow-md">
+
+        <h2 class="text-xl font-semibold mb-4 text-center text-gray-700">令和3年度の名古屋市の決算カード</h2>
+
+        <!-- Problem 1 -->
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">問題1</h3>
+            <p class="text-gray-700 mt-2">名古屋市における地方税の構成比は何%ですか？以下の表をもとに答えてください？</p>
+            <img src="images/nagoya_part1.jpg" alt="">
+
+            <!-- Textarea and Submit Button -->
+            <div class="mt-4">
+                <label for="answer1" class="block text-gray-700">回答を入力してください:</label>
+                <textarea id="answer1" class="border border-gray-300 rounded w-full mt-2 p-2" rows="1" placeholder="例: 60%"></textarea>
+                <button onclick="checkAnswer1()" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-2 hover:bg-blue-700 transition duration-200">提出</button>
+            </div>
+
+            <!-- Answer Display Section -->
+            <div id="result1" class="mt-4 p-4 rounded hidden">
+                <p id="message1" class="font-semibold text-lg"></p>
+                <p id="correct-answer1" class="mt-2 font-semibold"></p>
+                <p id="explanation1" class="text-sm"></p>
+                <img id="answer-image1" src="images/problem1_ans.jpeg" alt="解説画像" class="mt-4 rounded-md shadow-md hidden">
+            </div>
+
+            <!-- JavaScript for Answer Checking -->
+            <script>
+                function checkAnswer1() {
+                    const answer = document.getElementById("answer1").value.trim();
+                    const resultDiv = document.getElementById("result1");
+                    const messageP = document.getElementById("message1");
+                    const correctAnswerP = document.getElementById("correct-answer1");
+                    const explanationP = document.getElementById("explanation1");
+                    const answerImage = document.getElementById("answer-image1");
+
+                    // Reset styling and display
+                    resultDiv.classList.remove("bg-green-100", "bg-red-100", "text-green-700", "text-red-700");
+                    resultDiv.classList.add("hidden");
+                    answerImage.classList.add("hidden");
+
+                    if (answer === "41.8%") {
+                        messageP.textContent = "正解！";
+                        messageP.classList.add("text-green-700");
+                        resultDiv.classList.add("bg-green-100");
+                        correctAnswerP.textContent = "答え：41.8%";
+                        explanationP.textContent = "解説：名古屋市の地方税の構成比は41.8%です。前述の府中市よりも約5%ほど予算を自治体から賄っています。";
+                        answerImage.classList.remove("hidden");
+                    } else {
+                        messageP.textContent = "不正解";
+                        messageP.classList.add("text-red-700");
+                        resultDiv.classList.add("bg-red-100");
+                        correctAnswerP.textContent = "答え：41.8%";
+                        explanationP.textContent = "解説：名古屋市の地方税の構成比は41.8%です。前述の府中市よりも約5%ほど予算を自治体から賄っています。";
+                        answerImage.classList.remove("hidden");
+                    }
+                    resultDiv.classList.remove("hidden");
+                }
+            </script>
+        </div>
+        
+        <!-- Problem 2 -->
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">問題2</h3>
+            <p class="text-gray-700 mt-2">名古屋市の歳入合計はいくらですか？以下の表をもとに以下の選択肢から選んでください。</p>
+            <img src="images/nagoya_part1.jpg" alt="">
+            
+            <!-- Selectable List and Submit Button -->
+            <ul id="choices" class="list-disc list-inside text-gray-700 mt-2 cursor-pointer space-y-2">
+                <li onclick="selectAnswer('１兆４000億円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">１兆４000億円</li>
+                <li onclick="selectAnswer('1400億円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">1400億円</li>
+                <li onclick="selectAnswer('14兆円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">14兆円</li>
+            </ul>
+            <button onclick="checkAnswer2()" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4 hover:bg-blue-700 transition duration-200">提出</button>
+
+            <!-- Answer Display Section -->
+            <div id="result2" class="mt-4 p-4 rounded hidden">
+                <p id="message2" class="font-semibold text-lg"></p>
+                <p id="correct-answer2" class="mt-2 font-semibold"></p>
+                <p id="explanation2" class="text-sm"></p>
+                <img id="answer-image2" src="images/problem2_ans.jpg" alt="解説画像" class="mt-4 rounded-md shadow-md hidden">
+            </div>
+
+            <!-- JavaScript for Answer Checking -->
+            <script>
+                let selectedAnswer = "";
+
+                function selectAnswer(answer) {
+                    selectedAnswer = answer;
+                    const choices = document.querySelectorAll("#choices li");
+                    choices.forEach(choice => choice.classList.remove("bg-blue-200", "font-semibold"));
+                    event.target.classList.add("bg-blue-200", "font-semibold");
+                }
+
+                function checkAnswer2() {
+                    const resultDiv = document.getElementById("result2");
+                    const messageP = document.getElementById("message2");
+                    const correctAnswerP = document.getElementById("correct-answer2");
+                    const explanationP = document.getElementById("explanation2");
+                    const answerImage = document.getElementById("answer-image2");
+
+                    // Reset styling and display
+                    resultDiv.classList.remove("bg-green-100", "bg-red-100", "text-green-700", "text-red-700");
+                    resultDiv.classList.add("hidden");
+                    answerImage.classList.add("hidden");
+
+                    if (selectedAnswer === "１兆４000億円") {
+                        messageP.textContent = "正解！";
+                        messageP.classList.add("text-green-700");
+                        resultDiv.classList.add("bg-green-100");
+                        correctAnswerP.textContent = "答え：１兆４000億円";
+                        explanationP.textContent = "解説：名古屋市の歳入合計は１兆４０００億円で、府中市の財政規模の約10倍です。";
+                        answerImage.classList.remove("hidden");
+                    } else {
+                        messageP.textContent = "不正解";
+                        messageP.classList.add("text-red-700");
+                        resultDiv.classList.add("bg-red-100");
+                        correctAnswerP.textContent = "答え：１兆４000億円";
+                        explanationP.textContent = "解説：名古屋市の歳入合計は１兆４０００億円で、府中市の財政規模の約10倍です。";
+                        answerImage.classList.remove("hidden");
+                    }
+                    resultDiv.classList.remove("hidden");
+                }
+            </script>
+        </div>
+
+        <!-- Problem 3 -->
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">問題3</h3>
+            <p class="text-gray-700 mt-2">個人均等割の意味として最も適切なものを選んでください。</p>
+            <ul id="choices3" class="list-disc list-inside text-gray-700 mt-2 cursor-pointer space-y-2">
+                <li onclick="selectAnswer3('全ての住民に対して一律で課される税金')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">日本の住民税の一部で、全ての住民に対して一律で課される税金</li>
+                <li onclick="selectAnswer3('法人の規模に応じて一定額が課される税金')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">日本における法人住民税の一部で、法人の規模や所在地に応じて一定額が課される税金</li>
+                <li onclick="selectAnswer3('法人の所得に対して課される税金')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">日本の法人住民税の一部で、法人の所得（利益）に対して課される税金</li>
+                <li onclick="selectAnswer3('軽自動車に課される税金')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">軽自動車に課される税金</li>
+                <li onclick="selectAnswer3('銭湯利用時に課される税金')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">銭湯を利用するごとに課される税金</li>
+            </ul>
+            <button onclick="checkAnswer3()" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4 hover:bg-blue-700 transition duration-200">提出</button>
+
+            <!-- Answer Display Section -->
+            <div id="result3" class="mt-4 p-4 rounded hidden">
+                <p id="message3" class="font-semibold text-lg"></p>
+                <p id="correct-answer3" class="mt-2 font-semibold"></p>
+                <p id="explanation3" class="text-sm"></p>
+            </div>
+        </div>
+
+        <script>
+            let selectedAnswer3 = "";
+
+            function selectAnswer3(answer) {
+                selectedAnswer3 = answer;
+                const choices = document.querySelectorAll("#choices3 li");
+                choices.forEach(choice => choice.classList.remove("bg-blue-200", "font-semibold"));
+                event.target.classList.add("bg-blue-200", "font-semibold");
+            }
+
+            function checkAnswer3() {
+                const resultDiv = document.getElementById("result3");
+                const messageP = document.getElementById("message3");
+                const correctAnswerP = document.getElementById("correct-answer3");
+                const explanationP = document.getElementById("explanation3");
+
+                // Reset styling and display
+                resultDiv.classList.remove("bg-green-100", "bg-red-100", "text-green-700", "text-red-700");
+                resultDiv.classList.add("hidden");
+
+                if (selectedAnswer3 === "全ての住民に対して一律で課される税金") {
+                    messageP.textContent = "正解！";
+                    messageP.classList.add("text-green-700");
+                    resultDiv.classList.add("bg-green-100");
+                    correctAnswerP.textContent = "答え：日本の住民税の一部で、全ての住民に対して一律で課される税金";
+                    explanationP.textContent = "解説：個人均等割は全ての住民に対して一律で課される住民税の一部です。";
+                } else {
+                    messageP.textContent = "不正解";
+                    messageP.classList.add("text-red-700");
+                    resultDiv.classList.add("bg-red-100");
+                    correctAnswerP.textContent = "答え：日本の住民税の一部で、全ての住民に対して一律で課される税金";
+                    explanationP.textContent = "解説：個人均等割は全ての住民に対して一律で課される住民税の一部です。";
+                }
+                resultDiv.classList.remove("hidden");
+            }
+        </script>
+
+        <!-- Problem 4 -->
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">問題4</h3>
+            <p class="text-gray-700 mt-2">下記の表の中で最も決算額が大きい区分は何ですか？</p>
+            <img src="images/problem4_Q.jpeg" alt="">
+
+            <!-- Textarea and Submit Button -->
+            <div class="mt-4">
+                <label for="answer4" class="block text-gray-700">回答を入力してください:</label>
+                <textarea id="answer4" class="border border-gray-300 rounded w-full mt-2 p-2" rows="1" placeholder="例: 民生費"></textarea>
+                <button onclick="checkAnswer4()" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-2 hover:bg-blue-700 transition duration-200">提出</button>
+            </div>
+
+            <!-- Answer Display Section -->
+            <div id="result4" class="mt-4 p-4 rounded hidden">
+                <p id="message4" class="font-semibold text-lg"></p>
+                <p id="correct-answer4" class="mt-2 font-semibold"></p>
+                <p id="explanation4" class="text-sm"></p>
+                <img id="answer-image4" src="images/prolem4_ans.jpg" alt="解説画像" class="mt-4 rounded-md shadow-md hidden">
+            </div>
+        </div>
+
+        <script>
+            function checkAnswer4() {
+                const answer = document.getElementById("answer4").value.trim();
+                const resultDiv = document.getElementById("result4");
+                const messageP = document.getElementById("message4");
+                const correctAnswerP = document.getElementById("correct-answer4");
+                const explanationP = document.getElementById("explanation4");
+                const answerImage = document.getElementById("answer-image4");
+
+                // Reset styling and display
+                resultDiv.classList.remove("bg-green-100", "bg-red-100", "text-green-700", "text-red-700");
+                resultDiv.classList.add("hidden");
+                answerImage.classList.add("hidden");
+
+                if (answer === "民生費") {
+                    messageP.textContent = "正解！";
+                    messageP.classList.add("text-green-700");
+                    resultDiv.classList.add("bg-green-100");
+                    correctAnswerP.textContent = "答え：民生費";
+                    explanationP.textContent = "解説：民生費が約5200億円で最も多く、福祉政策が充実していることがわかります。";
+                    answerImage.classList.remove("hidden");
+                } else {
+                    messageP.textContent = "不正解";
+                    messageP.classList.add("text-red-700");
+                    resultDiv.classList.add("bg-red-100");
+                    correctAnswerP.textContent = "答え：民生費";
+                    explanationP.textContent = "解説：民生費が約5200億円で最も多く、福祉政策が充実していることがわかります。";
+                    answerImage.classList.remove("hidden");
+                }
+                resultDiv.classList.remove("hidden");
+            }
+        </script>
+
+                 
+        <!-- Problem 5 -->
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">問題5</h3>
+            <p class="text-gray-700 mt-2">名古屋市の財政調整基金はいくらですか？以下の選択肢から選んでください。</p>
+            <img src="images/problem5.jpeg" alt="">
+
+            <!-- Selectable List and Submit Button -->
+            <ul id="choices5" class="list-disc list-inside text-gray-700 mt-2 cursor-pointer space-y-2">
+                <li onclick="selectAnswer5('2020億円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">2020億円</li>
+                <li onclick="selectAnswer5('202億円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">202億円</li>
+                <li onclick="selectAnswer5('428億円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">428億円</li>
+                <li onclick="selectAnswer5('4280億円')" class="p-2 border border-gray-300 rounded hover:bg-gray-100">4280億円</li>
+            </ul>
+            <button onclick="checkAnswer5()" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4 hover:bg-blue-700 transition duration-200">提出</button>
+
+            <!-- Answer Display Section -->
+            <div id="result5" class="mt-4 p-4 rounded hidden">
+                <p id="message5" class="font-semibold text-lg"></p>
+                <p id="correct-answer5" class="mt-2 font-semibold"></p>
+                <p id="explanation5" class="text-sm"></p>
+                <img id="answer-image5" src="images/problem5_ans.jpeg" alt="解説画像" class="mt-4 rounded-md shadow-md hidden">
+            </div>
+        </div>
+
+        <!-- JavaScript for Answer Checking -->
+        <script>
+            let selectedAnswer5 = "";
+
+            function selectAnswer5(answer) {
+                selectedAnswer5 = answer;
+                const choices = document.querySelectorAll("#choices5 li");
+                choices.forEach(choice => choice.classList.remove("bg-blue-200", "font-semibold"));
+                event.target.classList.add("bg-blue-200", "font-semibold");
+            }
+
+            function checkAnswer5() {
+                const resultDiv = document.getElementById("result5");
+                const messageP = document.getElementById("message5");
+                const correctAnswerP = document.getElementById("correct-answer5");
+                const explanationP = document.getElementById("explanation5");
+                const answerImage = document.getElementById("answer-image5");
+
+                // Reset styling and display
+                resultDiv.classList.remove("bg-green-100", "bg-red-100", "text-green-700", "text-red-700");
+                resultDiv.classList.add("hidden");
+                answerImage.classList.add("hidden");
+
+                if (selectedAnswer5 === "202億円") {
+                    messageP.textContent = "正解！";
+                    messageP.classList.add("text-green-700");
+                    resultDiv.classList.add("bg-green-100");
+                    correctAnswerP.textContent = "答え：202億円";
+                    explanationP.textContent = "解説：名古屋市の財政調整基金は府中市と比較して少ないことがわかります。";
+                    answerImage.classList.remove("hidden");
+                } else {
+                    messageP.textContent = "不正解";
+                    messageP.classList.add("text-red-700");
+                    resultDiv.classList.add("bg-red-100");
+                    correctAnswerP.textContent = "答え：202億円";
+                    explanationP.textContent = "解説：名古屋市の財政調整基金は府中市と比較して少ないことがわかります。";
+                    answerImage.classList.remove("hidden");
+                }
+                resultDiv.classList.remove("hidden");
+            }
+        </script>
+    </main>
+    <!-- Navigation Buttons -->
+    <div class="max-w-4xl mx-auto flex justify-between mt-4">
+        <a href="basic.html" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200"><< 前へ</a>
+        <a href="last.html" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200">次へ >></a>
+    </div>
+</body>
+
+</html>
