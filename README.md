@@ -20,8 +20,7 @@
    ```
    git clone https://github.com/jphacks/os_2416.git
    ```
-
-3. 
+2. Open with Live Serverを使ってindex.htmlのファイルをブラウザで表示する
 
 ### 特長
 #### 1. 特長1
