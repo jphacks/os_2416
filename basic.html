@@ -6,12 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>決算カード倶楽部</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .dotgothic16-regular {
+            font-family: "DotGothic16", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .header {
+            background-color: #000;
+            /* 明るい緑 */
+            padding: 1rem;
+            /* ヘッダー全体のパディング */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* 少しの影 */
+        }
+
+        .img {
+            height: 48px;
+            /* ロゴの高さ */
+            width: auto;
+            /* 自動幅 */
+            margin-right: 1rem;
+            /* ロゴとテキストの間に余白 */
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 dotgothic16-regular">
     <!-- Header -->
-    <header class="bg-red-600 text-white py-6 shadow-lg">
-        <h1 class="text-center text-3xl font-bold">決算カード倶楽部</h1>
+    <header class="bg-black text-white py-4 shadow-lg flex items-center justify-between px-6">
+        <div class="flex items-center">
+            <img src="images/logo.jpeg" alt="logo" class="h-12 w-auto mr-4">
+            <h1 class="text-3xl font-bold"><a href="index.html">決算カード倶楽部</a></h1>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -92,8 +123,8 @@
 
     <!-- Navigation Buttons -->
     <div class="max-w-4xl mx-auto flex justify-between mt-4">
-        <a href="concept.html" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200"><< 前へ</a>
-        <a href="core-city.html" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200">次へ >></a>
+        <a href="concept.html" class="bg-black text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200"><< 前へ</a>
+        <a href="core-city.html" class="bg-black text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200">次へ >></a>
     </div>
 </body>
 
